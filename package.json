@@ -1,0 +1,30 @@
+{
+  "name": "qr-code-generator-desktop",
+  "version": "1.0.0",
+  "description": "Qr Code Generator",
+  "main": "main.js",
+  "scripts": {
+    "electron": "electron",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-windows": "electron-packager . qr-code-generator --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='QR Code Generator'",
+    "dist": "electron-builder -p always"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.1.0",
+    "electron-builder": "^20.39.0",
+    "electron-packager": "^13.1.1"
+  },
+  "build": {
+    "appId": "com.qrCodeGenerator",
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ],
+    "directories": {
+      "output": "release-builds"
+    }
+  }
+}
