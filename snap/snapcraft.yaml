@@ -6,7 +6,7 @@ description: This is a minimal Electron application based on the
 confinement: "strict"
 
 apps:
-  electron-quick-start:
+  qr-code-generator-desktop:
     command: desktop-launch $SNAP/qr-code-generator-desktop.wrapper
     plugs:
      - browser-support
@@ -18,12 +18,23 @@ apps:
      # - opengl
 
 parts:
-  src:
+  electron-app:
+    source: app/
     plugin: nodejs
-    node-packages:
-     - electron
-    source: git://github.com/studioLaCosaNostra/qr-code-generator-desktop
 
+    stage-packages:
+      - libnotify4
+      - libappindicator1
+      - libxtst6
+      - libnss3
+      - libxss1
+      - fontconfig-config
+      - gconf2
+      - libasound2
+      - pulseaudio
+
+    after:
+      - desktop-gtk2
   deps:
     plugin: nil
     stage-packages:

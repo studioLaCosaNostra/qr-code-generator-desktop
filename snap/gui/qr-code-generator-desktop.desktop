@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=QR Code Generator
+Icon=${SNAP}/meta/gui/icon.png
+Categories=Utility;
+Exec=qr-code-generator-desktop
+Terminal=false
