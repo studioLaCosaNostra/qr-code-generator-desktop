@@ -7,23 +7,11 @@ description: This is a minimal Electron application based on the
 confinement: strict
 grade: stable
 
-apps:
-  qr-code-generator-desktop:
-    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/qr-code-generator-desktop
-    plugs:
-      - home
-      - x11
-      - unity7
-      - browser-support
-      - network
-      - gsettings
-      - pulseaudio
-      - opengl
-
 parts:
   electron-app:
     source: .
     plugin: nodejs
+    node-engine: 10.15.3
 
     stage-packages:
       - libnotify4
@@ -38,10 +26,22 @@ parts:
 
     after:
       - desktop-gtk2
-    build: node_modules/.bin/electron-builder
+    build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
-      mv dist/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+      mv release-builds/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
     prime:
       - -node_modules
  
+apps:
+  qr-code-generator-desktop:
+    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/qr-code-generator-desktop
+    plugs:
+      - home
+      - x11
+      - unity7
+      - browser-support
+      - network
+      - gsettings
+      - pulseaudio
+      - opengl

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Electron won't start without this
-unset XDG_CONFIG_DIRS
-
-cd $SNAP/lib/node_modules/qr-code-generator-desktop
-exec $SNAP/bin/npm start
