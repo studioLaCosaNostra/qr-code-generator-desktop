@@ -15,6 +15,7 @@ function createWindow() {
       slashes: true
     })
   );
+  
   win.setMenuBarVisibility(false);
   win.setAutoHideMenuBar(true);
 
