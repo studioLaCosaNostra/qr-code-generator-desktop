@@ -3,23 +3,26 @@ version: 1.0
 summary: Qr Code Generator
 description: This is a minimal Electron application based on the
   Quick Start Guide within the Electron documentation.
-confinement: "strict"
+
+confinement: strict
+grade: stable
 
 apps:
   qr-code-generator-desktop:
-    command: desktop-launch $SNAP/qr-code-generator-desktop.wrapper
+    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/qr-code-generator-desktop
     plugs:
-     - browser-support
-     - network
-     - unity7
-     - gsettings
-     # - home
-     # - pulseaudio
-     # - opengl
+      - home
+      - x11
+      - unity7
+      - browser-support
+      - network
+      - gsettings
+      - pulseaudio
+      - opengl
 
 parts:
   electron-app:
-    source: app/
+    source: .
     plugin: nodejs
 
     stage-packages:
@@ -35,24 +38,10 @@ parts:
 
     after:
       - desktop-gtk2
-  deps:
-    plugin: nil
-    stage-packages:
-      - libgconf-2-4
-      - libnss3
-      - libxss1
-      - fontconfig-config
-
-  desktop-integration:
-    plugin: nil
-    stage-packages:
-      - libappindicator1
-      - libdbusmenu-glib4
-      - libnotify4
-      - libunity9
-
-  launcher:
-    plugin: copy
-    files:
-      qr-code-generator-desktop: qr-code-generator-desktop.wrapper
-    after: [desktop-glib-only]
+    build: node_modules/.bin/electron-builder
+    install: |
+      mkdir $SNAPCRAFT_PART_INSTALL/app
+      mv dist/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+    prime:
+      - -node_modules
+ 
