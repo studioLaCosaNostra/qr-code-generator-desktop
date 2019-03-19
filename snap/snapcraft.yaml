@@ -24,6 +24,7 @@ parts:
       - libasound2
       - pulseaudio
       - libdb5.3
+      
 
     after:
       - desktop-gtk2
@@ -32,6 +33,8 @@ parts:
       mkdir $SNAPCRAFT_PART_INSTALL/app
       cd release-builds/*/
       mv * $SNAPCRAFT_PART_INSTALL/app
+    stage:
+      - -lib/node_modules
     prime:
       - -node_modules
  
