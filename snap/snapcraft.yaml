@@ -54,6 +54,7 @@ parts:
       - libappindicator1
       - libsecret-1-0
       - libgtk-3-0
+      - libdb-5.3
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
