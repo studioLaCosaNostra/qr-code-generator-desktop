@@ -40,11 +40,17 @@ apps:
   qr-code-generator-desktop:
     command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/qr-code-generator-desktop
     plugs:
-      - home
-      - x11
-      - unity7
       - browser-support
-      - network
+      - desktop
+      - desktop-legacy
       - gsettings
-      - pulseaudio
+      - home
+      - mount-observe
+      - network
+      - network-bind
+      - unity7
+      - x11
       - opengl
+      - wayland
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
