@@ -1,8 +1,7 @@
 name: qr-code-generator-desktop
 version: 1.0
 summary: Qr Code Generator
-description: This is a minimal Electron application based on the
-  Quick Start Guide within the Electron documentation.
+description: Create custom QR Codes. You can save them as PNG image. You can change the size of the image.
 
 confinement: strict
 grade: stable
