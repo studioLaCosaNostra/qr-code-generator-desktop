@@ -11,7 +11,7 @@ parts:
   electron-app:
     source: app/
     plugin: nodejs
-    node-engine: 10.15.3
+    node-engine: 9.11.1
 
     stage-packages:
       - libnotify4
@@ -24,7 +24,6 @@ parts:
       - libasound2
       - pulseaudio
       - libdb5.3
-      
 
     after:
       - desktop-gtk2
