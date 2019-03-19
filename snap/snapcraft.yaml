@@ -19,11 +19,11 @@ parts:
       - libxtst6
       - libnss3
       - libxss1
-      - libdb-dev
       - fontconfig-config
       - gconf2
       - libasound2
       - pulseaudio
+      - libdb5.3
 
     after:
       - desktop-gtk2
