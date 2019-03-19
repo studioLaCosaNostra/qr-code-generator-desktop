@@ -7,27 +7,45 @@ confinement: strict
 grade: stable
 
 parts:
+  desktop-gtk3:
+    override-build: |
+      snapcraftctl build
+      export XDG_DATA_DIRS=$SNAPCRAFT_PART_INSTALL/usr/share
+      update-mime-database $SNAPCRAFT_PART_INSTALL/usr/share/mime
+      for dir in $SNAPCRAFT_PART_INSTALL/usr/share/icons/*/; do
+        if [ -f $dir/index.theme ]; then
+          if which gtk-update-icon-cache-3.0 &> /dev/null; then
+            gtk-update-icon-cache-3.0 -q $dir
+          elif which gtk-update-icon-cache &> /dev/null; then
+            gtk-update-icon-cache -q $dir
+          fi
+        fi
+      done
+    stage:
+      - -./usr/share/fonts/**
+
   electron-app:
     source: app/
     plugin: nodejs
     node-engine: 9.11.1
 
     stage-packages:
-      - libnotify4
-      - libappindicator1
-      - libxtst6
-      - libnss3
-      - libxss1
-      - fontconfig-config
-      - gconf2
       - libasound2
-      - pulseaudio
-      - libdb5.3
+      - libgconf2-4
+      - libnotify4
+      - libnspr4
+      - libnss3
+      - libpcre3
+      - libpulse0
+      - libxss1
+      - libxtst6
+      - libappindicator1
+      - libsecret-1-0
 
     after:
-      - desktop-gtk2
+      - desktop-gtk3
     build: npm run pack
-    install: |
+    override-build: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
       cd release-builds/*/
       mv * $SNAPCRAFT_PART_INSTALL/app
@@ -38,19 +56,19 @@ parts:
  
 apps:
   qr-code-generator-desktop:
-    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/qr-code-generator-desktop
+    command: desktop-launch $SNAP/app/qr-code-generator-desktop
     plugs:
-      - browser-support
-      - desktop
-      - desktop-legacy
-      - gsettings
-      - home
-      - mount-observe
-      - network
-      - network-bind
+      - home 
+      - desktop 
+      - desktop-legacy 
+      - x11 
       - unity7
-      - x11
+      - wayland 
+      - browser-support 
+      - network 
+      - gsettings 
+      - pulseaudio 
       - opengl
-      - wayland
+
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
