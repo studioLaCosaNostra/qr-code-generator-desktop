@@ -1,18 +1,17 @@
 {
   "name": "qr-code-generator-desktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Qr Code Generator",
   "main": "main.js",
   "scripts": {
     "electron": "electron",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-windows": "electron-packager . qr-code-generator --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='QR Code Generator'",
-    "dist": "electron-builder -p always",
-    "dist-snap": "build --linux snap",
+    "deploy": "electron-builder --linux --win",
     "pack": "electron-builder --dir"
   },
-  "author": "",
+  "author": "Studio La Cosa Nostra <studiolacosanostra@gmail.com>",
   "license": "ISC",
+  "repository": "https://github.com/studioLaCosaNostra/qr-code-generator-desktop",
   "devDependencies": {
     "electron": "^4.1.0",
     "electron-builder": "^20.39.0",
@@ -25,6 +24,30 @@
         "provider": "github"
       }
     ],
+    "linux": {
+      "category": "Utility",
+      "target": [
+        {
+          "target": "snap"
+        },
+        {
+          "target": "AppImage"
+        },
+        {
+          "target": "deb"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable"
+        },
+        {
+          "target": "nsis"
+        }
+      ]
+    },
     "directories": {
       "output": "release-builds"
     }
