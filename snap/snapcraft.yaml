@@ -25,7 +25,7 @@ parts:
       - libdb5.3
 
     after:
-      - desktop-gtk2
+      - desktop-gtk3
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
