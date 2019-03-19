@@ -6,7 +6,7 @@
   "scripts": {
     "electron": "electron",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "electron-builder --linux --win",
+    "deploy": "electron-builder --linux --win -p always",
     "pack": "electron-builder --dir"
   },
   "author": "Studio La Cosa Nostra <studiolacosanostra@gmail.com>",
