@@ -4,26 +4,9 @@ summary: Qr Code Generator
 description: Create custom QR Codes. You can save them as PNG image. You can change the size of the image.
 
 confinement: strict
-grade: devmode
+grade: devel
 
 parts:
-  desktop-gtk3:
-    override-build: |
-      snapcraftctl build
-      export XDG_DATA_DIRS=$SNAPCRAFT_PART_INSTALL/usr/share
-      update-mime-database $SNAPCRAFT_PART_INSTALL/usr/share/mime
-      for dir in $SNAPCRAFT_PART_INSTALL/usr/share/icons/*/; do
-        if [ -f $dir/index.theme ]; then
-          if which gtk-update-icon-cache-3.0 &> /dev/null; then
-            gtk-update-icon-cache-3.0 -q $dir
-          elif which gtk-update-icon-cache &> /dev/null; then
-            gtk-update-icon-cache -q $dir
-          fi
-        fi
-      done
-    stage:
-      - -./usr/share/fonts/**
-
   electron-app:
     source: app/
     plugin: nodejs
