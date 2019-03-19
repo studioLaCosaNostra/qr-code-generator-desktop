@@ -9,7 +9,7 @@ grade: stable
 
 parts:
   electron-app:
-    source: .
+    source: app/
     plugin: nodejs
     node-engine: 10.15.3
 
@@ -30,7 +30,8 @@ parts:
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
-      mv release-builds/`ls release-builds`/* $SNAPCRAFT_PART_INSTALL/app
+      cd release-builds/*/
+      mv * $SNAPCRAFT_PART_INSTALL/app
     prime:
       - -node_modules
  
