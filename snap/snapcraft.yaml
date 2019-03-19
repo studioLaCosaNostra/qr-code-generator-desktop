@@ -19,7 +19,7 @@ parts:
       - libxtst6
       - libnss3
       - libxss1
-      - libdb
+      - libdb-dev
       - fontconfig-config
       - gconf2
       - libasound2
