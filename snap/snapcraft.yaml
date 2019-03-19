@@ -19,6 +19,7 @@ parts:
       - libxtst6
       - libnss3
       - libxss1
+      - libdb
       - fontconfig-config
       - gconf2
       - libasound2
@@ -29,7 +30,7 @@ parts:
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
-      mv release-builds/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+      mv release-builds/`ls release-builds`/* $SNAPCRAFT_PART_INSTALL/app
     prime:
       - -node_modules
  
