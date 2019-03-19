@@ -7,7 +7,7 @@ confinement: strict
 grade: stable
 
 parts:
-  desktop-gtk3:
+  desktop-gtk2:
     override-build: |
       snapcraftctl build
       export XDG_DATA_DIRS=$SNAPCRAFT_PART_INSTALL/usr/share
@@ -41,11 +41,10 @@ parts:
       - libxtst6
       - libappindicator1
       - libsecret-1-0
-
     after:
-      - desktop-gtk3
-    build: npm run pack
+      - desktop-gtk2
     override-build: |
+      npm run pack
       mkdir $SNAPCRAFT_PART_INSTALL/app
       cd release-builds/*/
       mv * $SNAPCRAFT_PART_INSTALL/app
