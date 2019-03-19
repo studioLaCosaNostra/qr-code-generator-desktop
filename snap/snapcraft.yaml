@@ -3,15 +3,44 @@ version: 1.0
 summary: Qr Code Generator
 description: Create custom QR Codes. You can save them as PNG image. You can change the size of the image.
 
+grade: stable
 confinement: strict
-grade: devel
+
+plugs:
+  gnome-3-26-1604:
+    interface: content
+    target: $SNAP/gnome-platform
+    default-provider: gnome-3-26-1604
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes
+
 
 parts:
-  electron-app:
-    source: app/
-    plugin: nodejs
-    node-engine: 9.11.1
+  gnome:
+    plugin: nil
+    build-packages:
+      - software-properties-common
+    override-pull: |
+      add-apt-repository -y ppa:ubuntu-desktop/gnome-3-26
+      apt -y update
 
+  electron-app:
+    after:
+      - gnome
+      - desktop-gnome-platform
+    plugin: nodejs
+    source: app/
+    node-engine: 9.11.1
     stage-packages:
       - libasound2
       - libgconf2-4
@@ -24,9 +53,7 @@ parts:
       - libxtst6
       - libappindicator1
       - libsecret-1-0
-      - libgtk-3-dev
-    after:
-      - desktop-gtk3
+      - libgtk-3-0
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
@@ -37,39 +64,9 @@ parts:
     prime:
       - -node_modules
 
-  gtk3-locales:
-    plugin: nil
-    build-packages:
-      - apt
-      - dpkg
-    override-pull: |
-      set -eux
-      apt download "language-pack-gnome-*-base"
-    override-build: |
-      set -eux
-      for deb in *.deb; do dpkg-deb -x $deb .; done
-      find usr/share/locale-langpack -type f -not -name "gtk30*.mo" -exec rm '{}' \;
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share
-      cp -R usr/share/locale-langpack $SNAPCRAFT_PART_INSTALL/usr/share/
-
-
-plugs:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes:sounds-themes
-
 apps:
   qr-code-generator-desktop:
-    command: desktop-launch $SNAP/app/qr-code-generator-desktop
+    command: bin/desktop-launch $SNAP/app/qr-code-generator-desktop
     plugs:
       - home 
       - desktop 
@@ -85,5 +82,4 @@ apps:
 
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
-      XDG_DATA_DIRS: $SNAPCRAFT_STAGE/usr/share:/usr/local/share:/usr/share
-
+      DISABLE_WAYLAND: 1
