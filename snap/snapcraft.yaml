@@ -51,7 +51,22 @@ parts:
       find usr/share/locale-langpack -type f -not -name "gtk30*.mo" -exec rm '{}' \;
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share
       cp -R usr/share/locale-langpack $SNAPCRAFT_PART_INSTALL/usr/share/
- 
+
+
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes:gtk-3-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes:icon-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes:sounds-themes
+
 apps:
   qr-code-generator-desktop:
     command: desktop-launch $SNAP/app/qr-code-generator-desktop
@@ -70,3 +85,5 @@ apps:
 
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
+      XDG_DATA_DIRS: $SNAPCRAFT_STAGE/usr/share:/usr/local/share:/usr/share
+
