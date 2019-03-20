@@ -1,7 +1,13 @@
 name: qr-code-generator-desktop
-version: 1.0
-summary: Qr Code Generator
-description: Create custom QR Codes. You can save them as PNG image. You can change the size of the image.
+passthrough:
+  title: Qr Code Generator
+version: 1.0.0
+summary: You can save them as PNG image. You can change the size of the image.
+description: |
+  An application created for a friend. Based on the electron platform. The generator offers:
+  * Preview how the QR code changes when entering text
+  * Write to the PNG file generated QR code
+  * Changing the image size before saving
 
 grade: stable
 confinement: strict
@@ -60,9 +66,14 @@ parts:
       cd release-builds/*/
       mv * $SNAPCRAFT_PART_INSTALL/app
     stage:
-      - -lib/node_modules
-    prime:
-      - -node_modules
+      - -lib/node_modules/*
+      - -usr/share/doc/*
+      - -usr/share/man/*
+      - -share/man/*
+      - -share/doc/*
+      - -CHANGELOG.md
+      - -README.md
+
 
 apps:
   qr-code-generator-desktop:
