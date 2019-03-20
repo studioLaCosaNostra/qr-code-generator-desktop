@@ -28,9 +28,6 @@
       "category": "Utility",
       "target": [
         {
-          "target": "snap"
-        },
-        {
           "target": "AppImage"
         },
         {
