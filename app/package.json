@@ -4,7 +4,6 @@
   "description": "Qr Code Generator",
   "main": "main.js",
   "scripts": {
-    "electron": "electron",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "electron-builder --linux --win -p always",
