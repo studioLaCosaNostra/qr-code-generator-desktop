@@ -26,10 +26,22 @@ function createWindow() {
     win = null;
   });
 
+  
   globalShortcut.register('CommandOrControl+W', () => {
     app.quit();
-  })
+  });
+
+  const handleRedirect = (e, url) => {
+    if (url != win.getURL()) {
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
+  }
+  win.webContents.on('will-navigate', handleRedirect)
+  win.webContents.on('new-window', handleRedirect)
 }
+
+
 
 app.on("ready", createWindow);
 
