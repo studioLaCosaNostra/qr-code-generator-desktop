@@ -1,10 +1,11 @@
 {
   "name": "qr-code-generator-desktop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Qr Code Generator",
   "main": "main.js",
   "scripts": {
     "electron": "electron",
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "electron-builder --linux --win -p always",
     "pack": "electron-builder --dir"

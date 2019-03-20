@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, globalShortcut } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -25,6 +25,10 @@ function createWindow() {
   win.on("closed", () => {
     win = null;
   });
+
+  globalShortcut.register('CommandOrControl+W', () => {
+    app.quit();
+  })
 }
 
 app.on("ready", createWindow);
