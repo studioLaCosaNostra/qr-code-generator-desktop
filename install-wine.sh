@@ -10,6 +10,6 @@ echo "Build Start"
 git clone --depth 1 git://source.winehq.org/git/wine.git
 cd wine
 sudo apt-get update
-sudo apt-get install build-essential gcc-multilib g++-multilib
+sudo apt-get install build-essential gcc-multilib xorg-dev libx11-dev
 ./configure
 make
