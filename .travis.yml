@@ -5,17 +5,21 @@ node_js:
 jobs:
   include:
     - stage: Test
+      cache:
+        directories:
+          - app/node_module
       before_install:
         - cd app
-      cache: npm
       script: npm test
     - stage: Deploy
+      cache:
+        directories:
+          - app/node_module
+          - wine
       before_install:
         - ./install-wine.sh
         - cd app
       sudo: required
-      cache: npm
-        # - npm install
       script: npm run deploy
       on:
         branch: master
