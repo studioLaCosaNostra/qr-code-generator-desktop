@@ -1,19 +1,19 @@
 language: node_js
 node_js:
   - "9.11.1"
-cache: npm
 
 jobs:
   include:
     - stage: Test
       before_install:
         - cd app
+      cache: npm
       script: npm test
     - stage: Deploy
       before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y wine
+        - ./install-wine.sh
         - cd app
+      cache: npm
         # - npm install
       script: npm run deploy
       on:
