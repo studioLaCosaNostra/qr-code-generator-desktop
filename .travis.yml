@@ -12,7 +12,7 @@ jobs:
     - stage: Deploy
       before_install:
         - sudo apt-get update
-        - sudo apt-get install -y wine-stable
+        - sudo apt-get install -y wine1.6
       script: npm run deploy
       on:
         branch: master
