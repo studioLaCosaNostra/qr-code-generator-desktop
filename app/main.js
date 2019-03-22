@@ -1,8 +1,15 @@
-const { app, BrowserWindow, globalShortcut } = require("electron");
+const { app, BrowserWindow } = require("electron");
+const electronLocalShortcut = require('electron-localshortcut');
 const path = require("path");
 const url = require("url");
 
 let win;
+
+function registerShortcut(window, shortcuts, callback) {
+  shortcuts.forEach((shortcut) => {
+    electronLocalShortcut.register(window, shortcut, callback);
+  });
+}
 
 function createWindow() {
   win = new BrowserWindow({ width: 800, height: 550 });
@@ -27,7 +34,7 @@ function createWindow() {
   });
 
   
-  globalShortcut.register('CommandOrControl+W', () => {
+  registerShortcut(win, ['CommandOrControl+W', 'CommandOrControl+Q'], () => {
     app.quit();
   });
 
