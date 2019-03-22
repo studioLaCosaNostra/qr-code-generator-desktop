@@ -13,4 +13,4 @@ sudo apt-get update
 sudo apt-get install build-essential flex bison
 ./configure --without-freetype --enable-win64
 make
-make install
+sudo make install
