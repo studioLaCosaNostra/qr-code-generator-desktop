@@ -10,6 +10,6 @@ echo "Build Start"
 git clone --depth 1 git://source.winehq.org/git/wine.git
 cd wine
 sudo apt-get update
-sudo apt-get install build-essential:i386 gcc-multilib libx11-dev:i386 flex bison libfreetype6-dev:i386
-./configure
+sudo apt-get install build-essential flex bison
+./configure --without-freetype --enable-win64
 make
