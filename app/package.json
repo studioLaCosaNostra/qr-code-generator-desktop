@@ -7,7 +7,8 @@
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 0",
     "deploy": "electron-builder --linux --win -p always",
-    "pack": "electron-builder --dir"
+    "pack": "electron-builder --dir",
+    "release": "electron-builder -p always"
   },
   "author": "Studio La Cosa Nostra <studiolacosanostra@gmail.com>",
   "license": "ISC",
