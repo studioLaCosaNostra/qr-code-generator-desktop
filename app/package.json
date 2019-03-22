@@ -15,6 +15,7 @@
   "devDependencies": {
     "electron": "^4.1.0",
     "electron-builder": "^20.39.0",
+    "electron-localshortcut": "^3.1.0",
     "electron-packager": "^13.1.1"
   },
   "build": {
@@ -48,5 +49,6 @@
     "directories": {
       "output": "release-builds"
     }
-  }
+  },
+  "dependencies": {}
 }
