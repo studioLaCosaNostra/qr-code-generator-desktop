@@ -6,21 +6,6 @@ sudo: false
 language: node_js
 node_js: "9.11.1"
 
-env:
-  global:
-    - ELECTRON_CACHE=$HOME/.cache/electron
-    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-os:
-  - linux
-  - osx
-
-cache:
-  directories:
-  - app/node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
-  - $HOME/.npm/_prebuilds
 
 before_install:
   - cd app
@@ -30,11 +15,24 @@ jobs:
     - stage: Test
       script: npm test
     - stage: Deploy
+      env:
+        global:
+          - ELECTRON_CACHE=$HOME/.cache/electron
+          - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      os:
+        - linux
+        - osx
+      cache:
+        directories:
+          - app/node_modules
+          - $HOME/.cache/electron
+          - $HOME/.cache/electron-builder
+          - $HOME/.npm/_prebuilds
       script:
-        - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn release; fi
+        - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run release; fi
         - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run release -- --mac --win; fi
+      before_cache:
+        - rm -rf $HOME/.cache/electron-builder/wine
       on:
         branch: master
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
