@@ -13,6 +13,7 @@ jobs:
       before_install:
         - ./install-wine.sh
         - cd app
+      sudo: required
       cache: npm
         # - npm install
       script: npm run deploy
