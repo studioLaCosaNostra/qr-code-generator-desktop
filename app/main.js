@@ -3,7 +3,7 @@ const electronLocalShortcut = require('electron-localshortcut');
 const path = require("path");
 const url = require("url");
 
-let win;
+let mainWindow;
 
 function registerShortcut(window, shortcuts, callback) {
   shortcuts.forEach((shortcut) => {
@@ -11,11 +11,17 @@ function registerShortcut(window, shortcuts, callback) {
   });
 }
 
+function unregisterShortcut(window, shortcuts) {
+  shortcuts.forEach((shortcut) => {
+    electronLocalShortcut.unregister(window, shortcut);
+  });
+}
+
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 550 });
+  const window = new BrowserWindow({ width: 800, height: 550 });
 
   // load the dist folder from Angular
-  win.loadURL(
+  window.loadURL(
     url.format({
       pathname: path.join(__dirname, `/dist/index.html`),
       protocol: "file:",
@@ -23,29 +29,36 @@ function createWindow() {
     })
   );
   
-  win.setMenuBarVisibility(false);
-  win.setAutoHideMenuBar(true);
+  window.setMenuBarVisibility(false);
+  window.setAutoHideMenuBar(true);
 
   // The following is optional and will open the DevTools:
   // win.webContents.openDevTools()
 
-  win.on("closed", () => {
-    win = null;
+  window.on("closed", () => {
+    unregisterShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q', 'CommandOrControl+N'])
   });
 
   
-  registerShortcut(win, ['CommandOrControl+W', 'CommandOrControl+Q'], () => {
-    app.quit();
+  registerShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q'], () => {
+    if (window) {
+      window.close();
+    }
+  });
+
+  registerShortcut(window, ['CommandOrControl+N'], () => {
+    createWindow();
   });
 
   const handleRedirect = (e, url) => {
-    if (url != win.getURL()) {
+    if (url != window.getURL()) {
       e.preventDefault();
       require('electron').shell.openExternal(url);
     }
   }
-  win.webContents.on('will-navigate', handleRedirect)
-  win.webContents.on('new-window', handleRedirect)
+  window.webContents.on('will-navigate', handleRedirect);
+  window.webContents.on('new-window', handleRedirect);
+  return window;
 }
 
 
@@ -61,7 +74,10 @@ app.on("window-all-closed", () => {
 
 // initialize the app's main window
 app.on("activate", () => {
-  if (win === null) {
-    createWindow();
+  if (mainWindow === null) {
+    mainWindow = createWindow();
+    mainWindow.on('closed', () => {
+      mainWindow = null;
+    })
   }
 });
