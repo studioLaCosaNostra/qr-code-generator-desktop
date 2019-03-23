@@ -1,6 +1,6 @@
 {
   "name": "qr-code-generator-desktop",
-  "version": "1.0.5",
+  "version": "1.0.6-3-g1870156",
   "description": "Qr Code Generator",
   "main": "main.js",
   "scripts": {
