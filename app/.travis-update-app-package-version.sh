@@ -7,7 +7,7 @@ setup_git() {
 
 commit_new_version() {
   git checkout master
-  npm version $(git describe)
+  npm version $(git describe --abbrev=0)
   npm install
   # Current month and year, e.g: Apr 2018
   dateAndMonth=`date "+%b %Y"`
