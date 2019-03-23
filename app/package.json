@@ -4,6 +4,7 @@
   "description": "Qr Code Generator",
   "main": "main.js",
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 0",
     "deploy": "electron-builder --linux --win -p always",
