@@ -1,5 +1,4 @@
 osx_image: xcode10.1
-
 dist: trusty
 sudo: false
 
@@ -14,53 +13,40 @@ jobs:
   include:
     # - stage: Test
     #   script: npm test
-    - stage: Deploy windows
-      env:
-        allow_failures:
-        global:
+    matrix:
+      include:
+      - stage: Deploy Windows & Mac
+        env:
+          global:
           - ELECTRON_CACHE=$HOME/.cache/electron
           - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-      os: windows
-      cache:
-        directories:
+        os: osx
+        cache:
+          directories:
           - app/node_modules
           - $HOME/.cache/electron
           - $HOME/.cache/electron-builder
           - $HOME/.npm/_prebuilds
-      script:
-        -  npm run release -- --win
-      on:
-        branch: master
-    - stage: Deploy mac
-      env:
-        global:
+        script:
+        -  npm run release -- --mac --win
+        before_cache:
+        - rm -rf $HOME/.cache/electron-builder/wine
+        on:
+          branch: master
+      - stage: Deploy linux
+        env:
+          global:
           - ELECTRON_CACHE=$HOME/.cache/electron
           - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-      os: osx
-      cache:
-        directories:
+        os: linux
+        cache:
+          directories:
           - app/node_modules
           - $HOME/.cache/electron
           - $HOME/.cache/electron-builder
           - $HOME/.npm/_prebuilds
-      script:
-        -  npm run release -- --mac
-      on:
-        branch: master
-    - stage: Deploy linux
-      env:
-        global:
-          - ELECTRON_CACHE=$HOME/.cache/electron
-          - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-      os: linux
-      cache:
-        directories:
-          - app/node_modules
-          - $HOME/.cache/electron
-          - $HOME/.cache/electron-builder
-          - $HOME/.npm/_prebuilds
-      script:
+        script:
         -  npm run release
-      on:
-        branch: master
+        on:
+          branch: master
 
