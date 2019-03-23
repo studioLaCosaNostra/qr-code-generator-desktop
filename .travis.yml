@@ -21,8 +21,8 @@ env:
 jobs:
   include:
     - stage: Test
-      script: npm test
-      after_success:
+      script: 
+        - npm test
         - sh .travis-update-app-package-version.sh
     - stage: Deploy Windows & Mac
       os: osx
