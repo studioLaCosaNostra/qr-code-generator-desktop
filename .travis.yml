@@ -16,23 +16,23 @@ jobs:
     - stage: Deploy
       env:
         global:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+          - ELECTRON_CACHE=$HOME/.cache/electron
+          - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
       cache:
         directories:
-        - app/node_modules
-        - $HOME/.cache/electron
-        - $HOME/.cache/electron-builder
-        - $HOME/.npm/_prebuilds
+          - app/node_modules
+          - $HOME/.cache/electron
+          - $HOME/.cache/electron-builder
+          - $HOME/.npm/_prebuilds
       on:
         branch: master
       before_cache:
-      - rm -rf $HOME/.cache/electron-builder/wine
+        - rm -rf $HOME/.cache/electron-builder/wine
       matrix:
         include:
-        - os: osx
-          script:
-          - npm run release -- --mac --win
-        - os: linux
-          script:
-          - npm run release
+          - os: osx
+            script:
+              - npm run release -- --mac --win
+          - os: linux
+            script:
+              - npm run release
