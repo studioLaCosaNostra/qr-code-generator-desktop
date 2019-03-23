@@ -34,8 +34,8 @@ commit_new_version
 
 # Attempt to commit to git only if "git commit" succeeded
 if [ $? -eq 0 ]; then
-  echo "A new commit with changed country JSON files exists. Uploading to GitHub"
+  echo "A new commit with new version. Uploading to GitHub"
   upload_files
 else
-  echo "No changes in country JSON files. Nothing to do"
+  echo "Cannot commit new version"
 fi
