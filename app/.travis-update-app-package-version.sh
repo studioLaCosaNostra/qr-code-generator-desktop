@@ -6,9 +6,8 @@ setup_git() {
 }
 
 commit_new_version() {
-  git checkout -b master --track origin/master
-  git checkout master
-  git pull
+  git clone --depth=1 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG
+  cd $TRAVIS_REPO_SLUG/app
   newVersion=$(git describe --abbrev=0)
   npm version $newVersion
   npm install
@@ -24,11 +23,8 @@ commit_new_version() {
 }
 
 upload_files() {
-  # Remove existing "origin"
-  git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
-  git remote add origin https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG > /dev/null 2>&1
-  git push origin master --quiet
+  git push https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG master > /dev/null 2>&1
 }
 
 setup_git
