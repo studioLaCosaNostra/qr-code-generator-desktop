@@ -14,7 +14,23 @@ jobs:
   include:
     # - stage: Test
     #   script: npm test
-    - stage: Deploy Windows & Mac
+    - stage: Deploy mac
+      env:
+        global:
+          - ELECTRON_CACHE=$HOME/.cache/electron
+          - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      os: windows
+      cache:
+        directories:
+          - app/node_modules
+          - $HOME/.cache/electron
+          - $HOME/.cache/electron-builder
+          - $HOME/.npm/_prebuilds
+      script:
+        -  npm run release -- --win
+      on:
+        branch: master
+    - stage: Deploy mac
       env:
         global:
           - ELECTRON_CACHE=$HOME/.cache/electron
@@ -27,9 +43,7 @@ jobs:
           - $HOME/.cache/electron-builder
           - $HOME/.npm/_prebuilds
       script:
-        -  npm run release -- --mac --win
-      before_cache:
-        - rm -rf $HOME/.cache/electron-builder/wine
+        -  npm run release -- --mac
       on:
         branch: master
     - stage: Deploy linux
