@@ -35,8 +35,8 @@ function createWindow() {
   // The following is optional and will open the DevTools:
   // win.webContents.openDevTools()
 
-  window.on("closed", () => {
-    unregisterShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q', 'CommandOrControl+N'])
+  window.on("close", () => {
+    unregisterShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q', 'CommandOrControl+N']);
   });
 
   
@@ -78,6 +78,6 @@ app.on("activate", () => {
     mainWindow = createWindow();
     mainWindow.on('closed', () => {
       mainWindow = null;
-    })
+    });
   }
 });
