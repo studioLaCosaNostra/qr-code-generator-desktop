@@ -32,12 +32,12 @@ jobs:
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
       on:
-        branch: master
+        tags: true
     - stage: Deploy linux
       os: linux
       dist: trusty
       script:
         -  npm run release
       on:
-        branch: master
+        tags: true
 
