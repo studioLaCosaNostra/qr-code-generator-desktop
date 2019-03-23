@@ -13,11 +13,12 @@
   "author": "Studio La Cosa Nostra <studiolacosanostra@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/studioLaCosaNostra/qr-code-generator-desktop",
+  "dependencies": {
+    "electron-localshortcut": "^3.1.0"
+  },
   "devDependencies": {
     "electron": "^4.1.0",
-    "electron-builder": "^20.39.0",
-    "electron-localshortcut": "^3.1.0",
-    "electron-packager": "^13.1.1"
+    "electron-builder": "^20.39.0"
   },
   "build": {
     "appId": "com.qrCodeGenerator",
@@ -50,6 +51,5 @@
     "directories": {
       "output": "release-builds"
     }
-  },
-  "dependencies": {}
+  }
 }
