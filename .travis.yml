@@ -3,6 +3,9 @@ sudo: false
 language: node_js
 node_js: "9.11.1"
 
+on:
+  tags: true
+
 before_install:
   - cd app
 
@@ -31,13 +34,10 @@ jobs:
         -  npm run release -- --mac --win
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
-      on:
-        tags: true
     - stage: Deploy linux
       os: linux
       dist: trusty
       script:
         -  npm run release
-      on:
-        tags: true
+
 
