@@ -3,9 +3,6 @@ sudo: false
 language: node_js
 node_js: "9.11.1"
 
-on:
-  tags: true
-
 before_install:
   - cd app
 
@@ -28,6 +25,7 @@ jobs:
         - npm test
         - sh .travis-update-app-package-version.sh
     - stage: Deploy Windows & Mac
+      if: tag IS present
       os: osx
       osx_image: xcode10.1
       script:
@@ -35,6 +33,7 @@ jobs:
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
     - stage: Deploy linux
+      if: tag IS present
       os: linux
       dist: trusty
       script:
