@@ -26,7 +26,7 @@ jobs:
     - stage: Update version
       if: tag IS present
       script:
-        - sh .travis-update-app-package-version.sh
+        - sh ../.travis-update-app-package-version.sh
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
