@@ -14,8 +14,9 @@ jobs:
   include:
     # - stage: Test
     #   script: npm test
-    - stage: Deploy mac
+    - stage: Deploy windows
       env:
+        allow_failures:
         global:
           - ELECTRON_CACHE=$HOME/.cache/electron
           - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
