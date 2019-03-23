@@ -20,16 +20,13 @@ env:
 
 jobs:
   include:
-    - stage: Test
-      script: 
-        - npm test
+    # - stage: Test
+    #   script: 
+    #     - npm test
     - stage: Update version
-      deploy:
-        provider: script
-        script:
-          - sh .travis-update-app-package-version.sh
-        on:
-          branch: master
+      if: branch = master
+      script:
+        - sh .travis-update-app-package-version.sh
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
