@@ -14,6 +14,16 @@ jobs:
     - stage: Test
       script: npm test
     - stage: Deploy
+      matrix:
+        include:
+          - name: "Windows & Mac"
+            os: osx
+            script:
+              - npm run release -- --mac --win
+          - name: "Linux"
+            os: linux
+            script:
+              - npm run release
       env:
         global:
           - ELECTRON_CACHE=$HOME/.cache/electron
@@ -28,11 +38,3 @@ jobs:
         branch: master
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
-      matrix:
-        include:
-          - os: osx
-            script:
-              - npm run release -- --mac --win
-          - os: linux
-            script:
-              - npm run release
