@@ -6,7 +6,7 @@ setup_git() {
 }
 
 commit_new_version() {
-  git clone --depth=1 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG
+  git clone --depth=1 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG $TRAVIS_REPO_SLUG
   cd $TRAVIS_REPO_SLUG/app
   newVersion=$(git describe --abbrev=0)
   npm version $newVersion

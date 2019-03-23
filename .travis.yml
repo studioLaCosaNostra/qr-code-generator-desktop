@@ -23,7 +23,13 @@ jobs:
     - stage: Test
       script: 
         - npm test
-        - sh .travis-update-app-package-version.sh
+    - stage: Update version
+      deploy:
+        provider: script
+        script:
+          - sh .travis-update-app-package-version.sh
+        on:
+          branch: master
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
