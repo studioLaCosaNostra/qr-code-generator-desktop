@@ -32,7 +32,9 @@ jobs:
       os: osx
       osx_image: xcode10.1
       script:
-        -  npm run release -- --mac --win
+        - newVersion=$(git describe --abbrev=0)
+        - npm version $newVersion
+        - npm run release -- --mac --win
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
     - stage: Deploy linux
@@ -40,6 +42,8 @@ jobs:
       os: linux
       dist: trusty
       script:
-        -  npm run release
+        - newVersion=$(git describe --abbrev=0)
+        - npm version $newVersion
+        - npm run release
 
 
