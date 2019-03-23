@@ -1,40 +1,41 @@
-osx_image: xcode10.1
-dist: trusty
 sudo: false
 
 language: node_js
 node_js: "9.11.1"
 
-
 before_install:
   - cd app
+
+cache:
+  directories:
+    - app/node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 jobs:
   include:
     - stage: Test
       script: npm test
-    - stage: Deploy
-      matrix:
-        include:
-          - name: "Windows & Mac"
-            os: osx
-            script:
-              - npm run release -- --mac --win
-          - name: "Linux"
-            os: linux
-            script:
-              - npm run release
-      env:
-        global:
-          - ELECTRON_CACHE=$HOME/.cache/electron
-          - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-      cache:
-        directories:
-          - app/node_modules
-          - $HOME/.cache/electron
-          - $HOME/.cache/electron-builder
-          - $HOME/.npm/_prebuilds
-      on:
-        branch: master
+    - stage: Deploy Windows & Mac
+      os: osx
+      osx_image: xcode10.1
+      script:
+        -  npm run release -- --mac --win
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
+      on:
+        branch: master
+    - stage: Deploy linux
+      os: linux
+      dist: trusty
+      script:
+        -  npm run release
+      on:
+        branch: master
+
