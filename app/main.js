@@ -1,19 +1,26 @@
-const { app, BrowserWindow } = require("electron");
-const electronLocalShortcut = require('electron-localshortcut');
+const { app, BrowserWindow, globalShortcut } = require("electron");
 const path = require("path");
 const url = require("url");
 
 let mainWindow;
 
-function registerShortcut(window, shortcuts, callback) {
-  shortcuts.forEach((shortcut) => {
-    electronLocalShortcut.register(window, shortcut, callback);
+function registerShortcuts(window, shortcuts, callback) {
+  window.on('focus', () => {
+    shortcuts.forEach((shortcut) => {
+      globalShortcut.register(shortcut, callback);
+    });
+  });
+  window.on('close', () => {
+    unregisterShortcuts(shortcuts);
+  });
+  window.on('blur', () => {
+    unregisterShortcuts(shortcuts);
   });
 }
 
-function unregisterShortcut(window, shortcuts) {
+function unregisterShortcuts(shortcuts) {
   shortcuts.forEach((shortcut) => {
-    electronLocalShortcut.unregister(window, shortcut);
+    globalShortcut.unregister(shortcut);
   });
 }
 
@@ -35,18 +42,11 @@ function createWindow() {
   // The following is optional and will open the DevTools:
   // win.webContents.openDevTools()
 
-  window.on("close", () => {
-    unregisterShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q', 'CommandOrControl+N']);
+  registerShortcuts(window, ['CommandOrControl+W', 'CommandOrControl+Q'], () => {
+    window.close();
   });
 
-  
-  registerShortcut(window, ['CommandOrControl+W', 'CommandOrControl+Q'], () => {
-    if (window) {
-      window.close();
-    }
-  });
-
-  registerShortcut(window, ['CommandOrControl+N'], () => {
+  registerShortcuts(window, ['CommandOrControl+N'], () => {
     createWindow();
   });
 
@@ -61,8 +61,6 @@ function createWindow() {
   return window;
 }
 
-
-
 app.on("ready", createWindow);
 
 // on macOS, closing the window doesn't quit the app
@@ -76,7 +74,7 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
   if (mainWindow === null) {
     mainWindow = createWindow();
-    mainWindow.on('closed', () => {
+    mainWindow.on('close', () => {
       mainWindow = null;
     });
   }
