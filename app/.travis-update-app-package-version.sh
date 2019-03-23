@@ -6,6 +6,9 @@ setup_git() {
 }
 
 commit_new_version() {
+  git checkout -b master --track origin/master
+  git checkout master
+  git pull
   newVersion=$(git describe --abbrev=0)
   npm version $newVersion
   npm install
@@ -17,7 +20,7 @@ commit_new_version() {
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
   # and Travis build number for reference
-  git commit -m "Travis update version $newVersion ($TRAVIS_BUILD_NUMBER)" -m "[skip ci]"
+  git commit -m "Travis update version $newVersion ($TRAVIS_BUILD_NUMBER)"
 }
 
 upload_files() {
