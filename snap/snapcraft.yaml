@@ -1,7 +1,7 @@
 name: qr-code-generator-desktop
 passthrough:
   title: Qr Code Generator
-version: 1.0.5
+version: git
 summary: You can save them as PNG image. You can change the size of the image.
 description: |
   An application created for a friend. Based on the electron platform. The generator offers:
