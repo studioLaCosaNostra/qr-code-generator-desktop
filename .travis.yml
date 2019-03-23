@@ -22,6 +22,8 @@ jobs:
   include:
     - stage: Test
       script: npm test
+      after_success:
+        - sh .travis-update-app-package-version.sh
     - stage: Deploy Windows & Mac
       os: osx
       osx_image: xcode10.1
