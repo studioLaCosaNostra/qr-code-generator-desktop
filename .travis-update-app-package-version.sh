@@ -9,7 +9,18 @@ setup_git() {
 
 commit_new_version() {
   git clone --depth=1 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG $TRAVIS_REPO_SLUG
-  cd $TRAVIS_REPO_SLUG/app
+  
+  # Update application info
+  cd $TRAVIS_REPO_SLUG
+  npm install
+  npm run update-app-info
+  git add -f app/package.json
+  git add -f app/package-lock.json
+  git add -f snap/snapcraft.yaml
+  git commit -m "Travis update application info ($TRAVIS_BUILD_NUMBER)" -m "[skip ci]"
+
+  # Update application version
+  cd app
   newVersion=$(git describe --abbrev=0)
   npm version $newVersion
   npm install
@@ -21,7 +32,7 @@ commit_new_version() {
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
   # and Travis build number for reference
-  git commit -m "Travis update version $newVersion ($TRAVIS_BUILD_NUMBER)"
+  git commit -m "Travis update version $newVersion ($TRAVIS_BUILD_NUMBER)" -m "[skip ci]"
 }
 
 upload_files() {

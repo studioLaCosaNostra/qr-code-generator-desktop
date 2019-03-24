@@ -8,6 +8,7 @@ before_install:
 
 cache:
   directories:
+    - node_modules
     - app/node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
@@ -23,7 +24,7 @@ jobs:
     - stage: Test
       script: 
         - npm test
-    - stage: Update version
+    - stage: Update application info
       if: tag IS present
       script:
         - sh ../.travis-update-app-package-version.sh
