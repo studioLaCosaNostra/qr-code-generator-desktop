@@ -1,7 +1,7 @@
 {
   "name": "qr-code-generator-desktop",
   "version": "1.0.18",
-  "description": "Qr Code Generator",
+  "description": "An application created for a friend. Based on the electron platform. The generator offers:\n* Preview how the QR code changes when entering text\n* Write to the PNG file generated QR code\n* Changing the image size before saving\n",
   "main": "main.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",

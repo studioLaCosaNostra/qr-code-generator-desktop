@@ -3,15 +3,17 @@ passthrough:
   title: Qr Code Generator
 version: git
 summary: You can save them as PNG image. You can change the size of the image.
-description: |
-  An application created for a friend. Based on the electron platform. The generator offers:
-  * Preview how the QR code changes when entering text
-  * Write to the PNG file generated QR code
-  * Changing the image size before saving
+description: >
+  An application created for a friend. Based on the electron platform. The
+  generator offers:
 
+  * Preview how the QR code changes when entering text
+
+  * Write to the PNG file generated QR code
+
+  * Changing the image size before saving
 grade: stable
 confinement: strict
-
 plugs:
   gnome-3-26-1604:
     interface: content
@@ -29,7 +31,6 @@ plugs:
     interface: content
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
-
 parts:
   gnome:
     plugin: nil
@@ -38,7 +39,6 @@ parts:
     override-pull: |
       add-apt-repository -y ppa:ubuntu-desktop/gnome-3-26
       apt -y update
-
   electron-app:
     after:
       - gnome
@@ -73,24 +73,21 @@ parts:
       - -share/doc/*
       - -CHANGELOG.md
       - -README.md
-
-
 apps:
   qr-code-generator-desktop:
     command: bin/desktop-launch $SNAP/app/qr-code-generator-desktop
     plugs:
-      - home 
-      - desktop 
-      - desktop-legacy 
-      - x11 
+      - home
+      - desktop
+      - desktop-legacy
+      - x11
       - unity7
-      - wayland 
-      - browser-support 
-      - network 
-      - gsettings 
-      - pulseaudio 
+      - wayland
+      - browser-support
+      - network
+      - gsettings
+      - pulseaudio
       - opengl
-
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
       DISABLE_WAYLAND: 1
