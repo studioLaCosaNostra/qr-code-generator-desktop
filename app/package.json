@@ -1,11 +1,11 @@
 {
   "name": "qr-code-generator-desktop",
   "version": "1.0.21",
-  "description": "An application created for a friend. Based on the electron platform. The generator offers:\n* Preview how the QR code changes when entering text\n* Write to the PNG file generated QR code\n* Changing the image size before saving\n",
+  "description": "An application created for a friend. Based on the electron platform. The generator offers: * Preview how the QR code changes when entering text * Write to the PNG file generated QR code * Changing the image size before saving ",
   "main": "main.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "start": "electron .",
+    "start": "electron --inspect .",
     "test": "echo \"Error: no test specified\" && exit 0",
     "deploy": "electron-builder --linux --win -p always",
     "pack": "electron-builder --dir",
@@ -16,7 +16,7 @@
   "repository": "https://github.com/studioLaCosaNostra/qr-code-generator-desktop",
   "dependencies": {},
   "devDependencies": {
-    "electron": "^4.1.0",
+    "electron": "^4.1.1",
     "electron-builder": "^20.39.0"
   },
   "build": {
@@ -52,3 +52,4 @@
     }
   }
 }
+

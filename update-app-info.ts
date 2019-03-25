@@ -11,7 +11,7 @@ const snapcraftFile = fs.readFileSync(snapcraftFilePath, 'utf8');
 const snapcraft = YAML.parse(snapcraftFile);
 
 if (info.description) {
-  appPackage.description = info.description;
+  appPackage.description = info.description.split('\n').join(' ');
   snapcraft.description = info.description;
 }
 

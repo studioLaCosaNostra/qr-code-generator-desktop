@@ -25,7 +25,11 @@ function unregisterShortcuts(shortcuts) {
 }
 
 function createWindow() {
-  const window = new BrowserWindow({ width: 800, height: 650 });
+  const window = new BrowserWindow({ width: 800, height: 650, webPreferences: {
+    nodeIntegration: false
+  }
+  
+});
 
   // load the dist folder from Angular
   window.loadURL(
