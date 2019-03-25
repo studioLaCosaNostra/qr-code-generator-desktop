@@ -95,7 +95,12 @@ THE SOFTWARE.
 
 @angular/material/snack-bar
 
+@angular/material/tooltip
+
 @angular/platform-browser
+MIT
+
+@angular/service-worker
 MIT
 
 combokeys

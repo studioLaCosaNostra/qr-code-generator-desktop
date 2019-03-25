@@ -1,0 +1,126 @@
+{
+  "configVersion": 1,
+  "timestamp": 1553536978514,
+  "index": "./index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "./es2015-polyfills.1e04665e16f944715fd2.js",
+        "./index.html",
+        "./main.dea4860d2a1ac4b4f252.js",
+        "./manifest.json",
+        "./polyfills.8bbb231b43165d65d357.js",
+        "./runtime.26209474bfa8dc87a77c.js",
+        "./styles.7b9b3a6310ae0abc3a92.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "./assets/android-icon-192x192.png",
+        "./assets/apple-icon-114x114.png",
+        "./assets/apple-icon-120x120.png",
+        "./assets/apple-icon-144x144.png",
+        "./assets/apple-icon-152x152.png",
+        "./assets/apple-icon-180x180.png",
+        "./assets/apple-icon-57x57.png",
+        "./assets/apple-icon-60x60.png",
+        "./assets/apple-icon-72x72.png",
+        "./assets/apple-icon-76x76.png",
+        "./assets/css/roboto.scss",
+        "./assets/favicon-16x16.png",
+        "./assets/favicon-32x32.png",
+        "./assets/favicon-96x96.png",
+        "./assets/favicon.ico",
+        "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.eot",
+        "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.svg",
+        "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.ttf",
+        "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.woff",
+        "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.woff2",
+        "./assets/icons/icon-128x128.png",
+        "./assets/icons/icon-144x144.png",
+        "./assets/icons/icon-152x152.png",
+        "./assets/icons/icon-192x192.png",
+        "./assets/icons/icon-384x384.png",
+        "./assets/icons/icon-512x512.png",
+        "./assets/icons/icon-72x72.png",
+        "./assets/icons/icon-96x96.png",
+        "./assets/ms-icon-144x144.png",
+        "./roboto-v18-latin-regular.372d0cc3288fe8e97df4.ttf",
+        "./roboto-v18-latin-regular.5d4aeb4e5f5ef754e307.woff2",
+        "./roboto-v18-latin-regular.68889c246da2739681c1.eot",
+        "./roboto-v18-latin-regular.8681f434273fd6a267b1.svg",
+        "./roboto-v18-latin-regular.bafb105baeb22d965c70.woff"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "./assets/android-icon-192x192.png": "5965f5fe6989c48af1bf3f21cab45edebe92f7e7",
+    "./assets/apple-icon-114x114.png": "c3a8c9971ef69498e2774267f9bc1019e459f2b8",
+    "./assets/apple-icon-120x120.png": "694548354937b67db527da3e1f32a662aaf1e822",
+    "./assets/apple-icon-144x144.png": "46e05ce0d5a0b845f0d10da805ce8da7dce70038",
+    "./assets/apple-icon-152x152.png": "3cd4a6070852747b964709aa8f82a239febe44fb",
+    "./assets/apple-icon-180x180.png": "3bdc975d3267b993014c297491d6a51ba46ed51a",
+    "./assets/apple-icon-57x57.png": "13f2deb43b64fc1fceea88139dbe1275d6fc0d0f",
+    "./assets/apple-icon-60x60.png": "598434bbef0a4a8282d1a9b04c551228c33f6e1a",
+    "./assets/apple-icon-72x72.png": "d787e339ed288ed37395fbc2216d46f387f48eb8",
+    "./assets/apple-icon-76x76.png": "bd460de9efd729c9845682e458f1196b294e42ef",
+    "./assets/css/roboto.scss": "519e7315932fbee1a91b795756029ff99f5b1526",
+    "./assets/favicon-16x16.png": "db0f718b4ad1adb4f4c1e6602e50510598ca186b",
+    "./assets/favicon-32x32.png": "5acc7c8ffdadf63c586b8f7bb4d6d3531b864740",
+    "./assets/favicon-96x96.png": "a3c7efda5069cace5d1c04452c91387320072346",
+    "./assets/favicon.ico": "052530765135050d322fa4bf6bcee7a5688ca828",
+    "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.eot": "15808e552e4af9300a1d9089375ed837b15ac695",
+    "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.svg": "56330e20fac53bb04fa41e87db6c1cbfcbe7a479",
+    "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.ttf": "754d9eaa4a009c42e8d6d40c632a1dad6d44ec21",
+    "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.woff": "934014cc9bbe5883542be756b3146c05844b254f",
+    "./assets/fonts/roboto-v18-latin/roboto-v18-latin-regular.woff2": "06db651cdf354c64a7383ea9c77024ef4fb4cef8",
+    "./assets/icons/icon-128x128.png": "52755451d6f5ae07e729e852c2dcdde3663456dd",
+    "./assets/icons/icon-144x144.png": "8d52d01a7b5783cfa5765b5b9fb07cf2d2a88dd5",
+    "./assets/icons/icon-152x152.png": "03166c0c7de6b24cfcc92b80b9b09114f82e618b",
+    "./assets/icons/icon-192x192.png": "a419dff66013fe2953f5ca0b63e4ae31d9e85b65",
+    "./assets/icons/icon-384x384.png": "4a6d13a990e7e7680122e77813e184587b5278c8",
+    "./assets/icons/icon-512x512.png": "9e0380897f1544cc29461ecfc9d5eb35d41ece69",
+    "./assets/icons/icon-72x72.png": "d787e339ed288ed37395fbc2216d46f387f48eb8",
+    "./assets/icons/icon-96x96.png": "d787e339ed288ed37395fbc2216d46f387f48eb8",
+    "./assets/ms-icon-144x144.png": "46e05ce0d5a0b845f0d10da805ce8da7dce70038",
+    "./es2015-polyfills.1e04665e16f944715fd2.js": "b7a81c61d32b0b12737f0c13f45973ba391cd7f9",
+    "./index.html": "a89d2f7b3c16473e3e12baaaf3eadc05fa4b84e2",
+    "./main.dea4860d2a1ac4b4f252.js": "8adf4282eafbc8f8018c17d4d3ac221ba736c399",
+    "./manifest.json": "744b465ae6a02fc8acaecd5ffd589b8331c5f15f",
+    "./polyfills.8bbb231b43165d65d357.js": "ffa449995bf2eba2ccd0a002417214f7eb75e7b5",
+    "./roboto-v18-latin-regular.372d0cc3288fe8e97df4.ttf": "754d9eaa4a009c42e8d6d40c632a1dad6d44ec21",
+    "./roboto-v18-latin-regular.5d4aeb4e5f5ef754e307.woff2": "06db651cdf354c64a7383ea9c77024ef4fb4cef8",
+    "./roboto-v18-latin-regular.68889c246da2739681c1.eot": "15808e552e4af9300a1d9089375ed837b15ac695",
+    "./roboto-v18-latin-regular.8681f434273fd6a267b1.svg": "56330e20fac53bb04fa41e87db6c1cbfcbe7a479",
+    "./roboto-v18-latin-regular.bafb105baeb22d965c70.woff": "934014cc9bbe5883542be756b3146c05844b254f",
+    "./runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
+    "./styles.7b9b3a6310ae0abc3a92.css": "3e11b5729a590d30bc5846c8b76cb3d9333d2ace"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
