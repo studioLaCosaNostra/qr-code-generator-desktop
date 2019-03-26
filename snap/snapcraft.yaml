@@ -47,24 +47,22 @@ parts:
     source: app/
     node-engine: 9.11.1
     stage-packages:
+      - fcitx-frontend-gtk3
+      - gvfs-libs
       - libasound2
-      - libgconf2-4
+      - libgconf-2-4
+      - libglib2.0-bin
+      - libgnome-keyring0
+      - libgtk-3-0
       - libnotify4
       - libnspr4
       - libnss3
       - libpcre3
       - libpulse0
+      - libsecret-1-0
       - libxss1
       - libxtst6
-      - libappindicator1
-      - libsecret-1-0
-      - libgtk-3-0
-      - libdb5.3
-      - libatk-bridge2.0-0
-      - libatk1.0-0
-      - libatspi2.0-0
-      - libfontconfig1
-      - libgdk-pixbuf2.0-0
+      - zlib1g
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
