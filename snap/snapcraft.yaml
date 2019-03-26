@@ -60,9 +60,11 @@ parts:
       - libsecret-1-0
       - libgtk-3-0
       - libdb5.3
-      - libatk1.0-dev
-      - libfontconfig1-dev
-      - libgdk-pixbuf2.0-dev
+      - libatk1.0-0
+      - libatk-bridge2.0-0
+      - libatspi2.0-0
+      - libfontconfig1
+      - libgdk-pixbuf2.0-0
     build: npm run pack
     install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
