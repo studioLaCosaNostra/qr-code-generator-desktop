@@ -8,7 +8,7 @@ setup_git() {
 }
 
 commit_new_version() {
-  git clone --depth=1 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG $TRAVIS_REPO_SLUG
+  git clone --depth=500 https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG $TRAVIS_REPO_SLUG
   
   # Update application info
   cd $TRAVIS_REPO_SLUG
