@@ -16,7 +16,7 @@
   "repository": "https://github.com/studioLaCosaNostra/qr-code-generator-desktop",
   "dependencies": {},
   "devDependencies": {
-    "electron": "^4.1.1",
+    "electron": "^11.5.0",
     "electron-builder": "^20.39.0"
   },
   "build": {
